@@ -20,12 +20,30 @@ c.execute("""
 conn.commit()
 
 #Creando las funciones
+#Renderizar
+def render():
+    rows = c.execute("""SELECT * FROM to_do""").fetchall()
+    print(rows)
+    
+    for i in range(0,len(rows)):
+        completed = rows[i][3]
+        description = rows[i][2]
+        l = Checkbutton(frame,text=description, width=42, anchor='w')
+        l.grid(row=i,column=0,sticky='w')
+    
+#Agregar Tarea
 def addToDo():
     todo = e.get()
-    c.execute('''
+    if todo:
+        c.execute('''
               INSERT INTO to_do (description, completed) VALUES (?,?)''',(todo,False))
-    conn.commit()
-    e.delete(0,END)
+        conn.commit()
+        e.delete(0,END)
+        render()
+    else:
+        pass
+        
+    
 
 #Creacion de la interfaz
 
@@ -45,4 +63,7 @@ frame.grid(row=1,column=0, columnspan=3,sticky='nswe', padx=5)
 e.focus()
 
 root.bind('<Return>',lambda x:addToDo())
+
+render()
+
 root.mainloop()
