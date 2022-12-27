@@ -1,7 +1,11 @@
 # Introduccion
 
-En este proyecto se realizara un TO_DO_LIST con Python y los modulos Tkinter y SQLITE3
+En este proyecto se realizara un TO_DO_LIST con Python y los modulos Tkinter y SQLITE3 de forma sencilla con las funciones de:
+
+* Agregar Tarea
+* Eliminar Tarea
+* Comprobacion de Tarea
 
 ## Codigo
 
-* [Creacion de la base de datos](./db.py)
+* [To_Do_List](./db.py)

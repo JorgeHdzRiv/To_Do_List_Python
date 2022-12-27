@@ -29,19 +29,32 @@ def complete(id):
         
     return _complete
 
+def remove(id):
+    def _remove():
+        c.execute('DELETE FROM to_do WHERE id = ?', (id,))
+        conn.commit()
+        render()
+        
+    return _remove
+
+
 #Creando las funciones
 #Renderizar
 def render():
     rows = c.execute("""SELECT * FROM to_do""").fetchall()
-    print(rows)
     
+    for widget in frame.winfo_children():
+        widget.destroy()
+        
     for i in range(0,len(rows)):
         id = rows[i][0]
         completed = rows[i][3]
         description = rows[i][2]
-        color = '#555555' if completed else '#000000'
+        color = '#BDBDBD' if completed else '#000000'
         l = Checkbutton(frame,text=description, fg=color, width=42, anchor='w',command=complete(id))
         l.grid(row=i,column=0,sticky='w')
+        btn = Button(frame, text='Eliminar', command=remove(id))
+        btn.grid(row=i,column=1)
         l.select() if completed else l.deselect()
     
 #Agregar Tarea
