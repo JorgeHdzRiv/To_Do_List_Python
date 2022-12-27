@@ -18,3 +18,14 @@ c.execute("""
               );""")
 
 conn.commit()
+
+#Creacion de la interfaz
+
+l = Label(root,text="Tarea")
+l.grid(row=0,column=0)
+
+e = Entry(root, width=40)
+e.grid(row=0,column=1)
+
+btn = Button(root,text='Agregar')
+btn.grid(row=0,column=2)
