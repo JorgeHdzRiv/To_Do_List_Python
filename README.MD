@@ -9,3 +9,7 @@ En este proyecto se realizara un TO_DO_LIST con Python y los modulos Tkinter y S
 ## Codigo
 
 * [To_Do_List](./db.py)
+
+## Version ejecutable(Windows)
+
+* [To_Do_List_Ejecutable](./dist/db.exe)
