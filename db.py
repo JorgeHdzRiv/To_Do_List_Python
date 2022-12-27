@@ -19,6 +19,13 @@ c.execute("""
 
 conn.commit()
 
+# Currying de complete
+def complete(id):
+    def _complete():
+        print(id)
+        
+    return _complete
+
 #Creando las funciones
 #Renderizar
 def render():
@@ -26,9 +33,10 @@ def render():
     print(rows)
     
     for i in range(0,len(rows)):
+        id = rows[i][0]
         completed = rows[i][3]
         description = rows[i][2]
-        l = Checkbutton(frame,text=description, width=42, anchor='w')
+        l = Checkbutton(frame,text=description, width=42, anchor='w',command=complete(id))
         l.grid(row=i,column=0,sticky='w')
     
 #Agregar Tarea
